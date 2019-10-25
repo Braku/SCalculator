@@ -239,7 +239,9 @@ namespace SC
             string contra = TRel.Text;
             if (contra == "0000")
             {
-                MessageBox.Show("Bienvenido.");
+                VentanaInicio VI = new VentanaInicio();
+                VI.Show();
+                this.Close();
             }
 
             b = Convert.ToDouble(this.TRel.Text);
