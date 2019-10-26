@@ -236,32 +236,35 @@ namespace SC
 
         private void BIgual_Click(object sender, EventArgs e)
         {
-            string contra = TRel.Text;
-            if (contra == "0000")
+            if (TRel.Text.Length == 1)
             {
-                VentanaInicio VI = new VentanaInicio();
-                VI.Show();
-                this.Close();
-            }
+                string contra = TRel.Text;
+                if (contra == "0000")
+                {
+                    VentanaInicio VI = new VentanaInicio();
+                    VI.Show();
+                    this.Close();
+                }
 
-            b = Convert.ToDouble(this.TRel.Text);
-            switch (c)
-            {
-                case "+":
-                    this.TRel.Text = Convert.ToString((b) + (a));
-                    break;
+                b = Convert.ToDouble(this.TRel.Text);
+                switch (c)
+                {
+                    case "+":
+                        this.TRel.Text = Convert.ToString((b) + (a));
+                        break;
 
-                case "-":
-                    this.TRel.Text = Convert.ToString((b) - (a));
-                    break;
+                    case "-":
+                        this.TRel.Text = Convert.ToString((b) - (a));
+                        break;
 
-                case "*":
-                    this.TRel.Text = Convert.ToString((b) * (a));
-                    break;
+                    case "*":
+                        this.TRel.Text = Convert.ToString((b) * (a));
+                        break;
 
-                case "/":
-                    this.TRel.Text = Convert.ToString((b) / (a));
-                    break;
+                    case "/":
+                        this.TRel.Text = Convert.ToString((b) / (a));
+                        break;
+                }
             }
         }
 
