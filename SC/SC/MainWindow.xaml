@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SC"
         mc:Ignorable="d"
-        Title="SCalculator" Height="418" Width="382">
+        Icon="Sources/Icono.ico"
+        Title="SCalculator" Height="418" Width="382"
+        ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -17,7 +19,7 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
     </Window.Resources>
-    <DockPanel>
+    <Grid>
         <Canvas>
             <StackPanel Panel.ZIndex="2" Name="Smenu" Background="#FF3F3F46" Height="390" Width="205" Visibility="Hidden">
                 <WrapPanel>
@@ -27,6 +29,19 @@
                         </Button.Background>
                     </Button>
                 </WrapPanel>
+                <DockPanel Height="30">
+                    <Button Background="Transparent" Foreground="White">
+                        <Button.Content>
+                            <Image Source="Sources/Icons/cicon.png"/>
+                        </Button.Content>
+                    </Button>
+                </DockPanel>
+                <DockPanel Height="30">
+                    
+                </DockPanel>
+                <DockPanel Height="30">
+                    
+                </DockPanel>
             </StackPanel>
             <WrapPanel Height="40" Width="374" Background="#FF3F3F46">
                 <Button x:Name="BtnMenu" Height="20" Width="20" Margin="10" BorderThickness="0" Click="BtnMenu_Click">
@@ -36,7 +51,7 @@
                 </Button>
             </WrapPanel>
             <WrapPanel Margin="0,50,0,0">
-                <TextBox Name="TRel" Height="40" Width="346" Margin="10,0" BorderThickness="0" Background="#FFD8D8D8"/>
+                <TextBox Name="TRel" Height="40" Width="346" Margin="10,0" BorderThickness="0" Background="#FFD8D8D8" KeyDown="TRel_KeyDown" TextChanged="TRel_TextChanged" />
             </WrapPanel>
             <WrapPanel Width="210" HorizontalAlignment="Left" Margin="5,80">
                 <Button Height="60" Width="60" Content="7" Name="B7" Margin="5,20,5,5" Click="B7_Click"/>
@@ -62,5 +77,5 @@
                 <Button Height="60" Width="130" Content="=" Name="BIgual" Margin="5" Click="BIgual_Click" Background="#FF282FB4" Foreground="White"/>
             </WrapPanel>
         </Canvas>
-    </DockPanel>
+    </Grid>
 </Window>

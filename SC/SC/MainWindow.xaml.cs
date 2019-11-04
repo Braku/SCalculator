@@ -27,6 +27,7 @@ namespace SC
         public MainWindow()
         {
             InitializeComponent();
+            this.TRel.Focus();
         }
 
         private void BtnMenu_Click(object sender, RoutedEventArgs e)
@@ -36,6 +37,7 @@ namespace SC
         private void BtnMenu1_Click(object sender, RoutedEventArgs e)
         {
             Smenu.Visibility = System.Windows.Visibility.Hidden;
+            this.TRel.Focus();
         }
 
         double a;
@@ -47,10 +49,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = "0";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + "0";
+                this.TRel.Focus();
             }
         }
 
@@ -59,10 +63,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = "1";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + "1";
+                this.TRel.Focus();
             }
         }
 
@@ -71,10 +77,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = "2";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + "2";
+                this.TRel.Focus();
             }
         }
 
@@ -83,10 +91,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = "3";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + "3";
+                this.TRel.Focus();
             }
         }
 
@@ -95,10 +105,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = "4";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + "4";
+                this.TRel.Focus();
             }
         }
 
@@ -107,10 +119,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = "5";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + "5";
+                this.TRel.Focus();
             }
         }
 
@@ -119,10 +133,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = "6";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + "6";
+                this.TRel.Focus();
             }
         }
 
@@ -131,10 +147,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = "7";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + "7";
+                this.TRel.Focus();
             }
         }
 
@@ -143,10 +161,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = "8";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + "8";
+                this.TRel.Focus();
             }
         }
 
@@ -155,10 +175,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = "9";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + "9";
+                this.TRel.Focus();
             }
         }
 
@@ -175,10 +197,12 @@ namespace SC
             if (TRel.Text == "")
             {
                 TRel.Text = ".";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text + ".";
+                this.TRel.Focus();
             }
         }
 
@@ -236,7 +260,7 @@ namespace SC
 
         private void BIgual_Click(object sender, EventArgs e)
         {
-            if (TRel.Text.Length == 1)
+            if (TRel.Text.Length > 1)
             {
                 string contra = TRel.Text;
                 if (contra == "0000")
@@ -268,40 +292,6 @@ namespace SC
             }
         }
 
-        //private void TRel_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    if (e.KeyChar == 13)
-        //    {
-        //        BIgual.PerformClick();
-        //        this.TRel.Focus();
-        //    }
-        //    if (e.KeyChar == 43)
-        //    {
-        //        bmas.PerformClick();
-        //        this.TRel.Focus();
-        //    }
-        //    else if (e.KeyChar == 45)
-        //    {
-        //        bres.PerformClick();
-        //        this.TRel.Focus();
-        //    }
-        //    else if (e.KeyChar == 42)
-        //    {
-        //        bmult.PerformClick();
-        //        this.TRel.Focus();
-        //    }
-        //    else if (e.KeyChar == 47)
-        //    {
-        //        bdiv.PerformClick();
-        //        this.TRel.Focus();
-        //    }
-        //    else if (e.KeyChar == 37)
-        //    {
-        //        bpo.PerformClick();
-        //        this.TRel.Focus();
-        //    }
-        //}
-
         private void TRel_TextChanged(object sender, EventArgs e)
         {
             if (TRel.Text == c)
@@ -314,6 +304,35 @@ namespace SC
                 {
                     TRel.Text = TRel.Text.Substring(0, TRel.Text.Length - 1);
                 }
+            }
+        }
+
+        private void TRel_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.TRel.Focus();
+                this.BIgual.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+            if (e.Key == Key.Add)
+            {
+                this.TRel.Focus();
+                this.BMas.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+            if (e.Key == Key.Subtract)
+            {
+                this.TRel.Focus();
+                this.BMenos.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+            if (e.Key == Key.Divide)
+            {
+                this.TRel.Focus();
+                this.BDiv.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+            if (e.Key == Key.Multiply)
+            {
+                this.TRel.Focus();
+                this.BMult.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
         }
     }

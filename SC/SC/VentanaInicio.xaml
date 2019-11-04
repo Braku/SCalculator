@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SC"
         mc:Ignorable="d"
-        Title="VentanaInicio" Height="450" Width="730">
+        Icon="Sources/Icono.ico"
+        Title="SC File manager" Height="450" Width="730">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -18,30 +19,39 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="83*"/>
+            <RowDefinition Height="998*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Button Content="Back" Width="120" HorizontalAlignment="Left" Foreground="White" Background="#FF282FB4" Click="Button_Click"/>
+        <Button Content="Folders" Grid.Column="1" Click="Button_Click"/>
+        <Button Content="Configuration" Grid.Column="2" Click="Button_Click"/>
         <Canvas>
-            <StackPanel>
-                <WrapPanel Width="720" Background="#FFDDDDDD">
-                    <Button Height="60" Content="Back" Click="Button_Click" Width="120" HorizontalAlignment="Left" Foreground="White" Background="#FF282FB4"/>
-                    <Button Height="60" Margin="120,0" Content="Folders" Click="Button_Click" Width="240" HorizontalAlignment="Left"/>
-                    <Button Height="60" Content="Configuration" Click="Button_Click" Width="120" HorizontalAlignment="Left"/>
-                </WrapPanel>
-            </StackPanel>
             <StackPanel Panel.ZIndex="2">
-                <WrapPanel Width="60" Margin="0,140">
-                    <Button Content="NF" Height="50" Width="50"/>
-                    <Button Content="UF/F" Height="50" Width="50"/>
-                    <Button Content="Edit" Height="50" Width="50"/>
+                <WrapPanel Width="80" Margin="0,140">
+                    <Button Height="50" Width="50">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Sources/Icons/nfolder.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="50" Width="50">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Sources/Icons/nfile.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="50" Width="50">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Sources/Icons/edit.png"/>
+                        </Button.Background>
+                    </Button>
                 </WrapPanel>
             </StackPanel>
-            <StackPanel Margin="0,60,0,0" Width="715">
-                <ScrollViewer Height="358" >
-                    <WrapPanel HorizontalAlignment="Center" Width="600" Height="358">
-                        <Image Source="Sources/Premiere.jpeg"  HorizontalAlignment="Center" Width="176" Margin="12,5"/>
-                        <Image Source="Sources/Premiere.jpeg"  HorizontalAlignment="Center" Width="176" Margin="12,5"/>
-                        <Image Source="Sources/Premiere.jpeg"  HorizontalAlignment="Center" Width="176" Margin="12,5"/>
-                    </WrapPanel>
-                </ScrollViewer>
-            </StackPanel>
+            <StackPanel Margin="0,60,0,0" Width="715"/>
         </Canvas>
     </Grid>
 </Window>
