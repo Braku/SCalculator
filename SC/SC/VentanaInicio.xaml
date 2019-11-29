@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SC"
         mc:Ignorable="d"
         Icon="Sources/Icono.ico"
-        Title="SC File manager" Height="450" Width="730">
+        WindowState="Maximized"
+        Title="SC File manager">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -20,20 +21,24 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="83*"/>
-            <RowDefinition Height="998*" />
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="180*" />
+            <RowDefinition Height="300*" />
+            <RowDefinition Height="400*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="246*"/>
+            <ColumnDefinition Width="253*"/>
+            <ColumnDefinition Width="248*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Back" Width="120" HorizontalAlignment="Left" Foreground="White" Background="#FF282FB4" Click="Button_Click"/>
-        <Button Content="Folders" Grid.Column="1" Click="Button_Click"/>
-        <Button Content="Configuration" Grid.Column="2" Click="Button_Click"/>
-        <Canvas>
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Fill="#FFDDDDDD"/>
+        <Button Content="Back" Width="120" HorizontalAlignment="Left" Foreground="White" Background="#FF282FB4" Click="Back_Click"/>
+        <Button Content="Folders" Width="80" Grid.Column="1"/>
+        <Button Content="Profile" HorizontalAlignment="Right" Grid.Column="2" Click="Profile_Click" Width="45" Margin="0,0,10,0" Height="35"/>
+        <Button Content="Configuration" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,10,0" Width="45" Visibility="Collapsed"/>
+        <Canvas Grid.Row="2">
             <StackPanel Panel.ZIndex="2">
-                <WrapPanel Width="80" Margin="0,140">
+                <WrapPanel Width="80" >
                     <Button Height="50" Width="50">
                         <Button.Background>
                             <ImageBrush ImageSource="Sources/Icons/nfolder.png"/>
@@ -51,7 +56,18 @@
                     </Button>
                 </WrapPanel>
             </StackPanel>
-            <StackPanel Margin="0,60,0,0" Width="715"/>
+        </Canvas>
+        <Canvas HorizontalAlignment="Center">
+            <StackPanel Margin="0,10">
+                <WrapPanel>
+                    <DockPanel HorizontalAlignment="Center">
+                        <Rectangle Width="90" Height="45" Margin="5" Fill="Gray" RadiusX="3" RadiusY="3"/>
+                        <Rectangle Width="90" Height="45" Margin="5" Fill="Gray" RadiusY="3" RadiusX="3"/>
+                        <Rectangle Width="90" Height="45" Margin="5" Fill="Gray" RadiusX="3" RadiusY="3"/>
+                        <Rectangle Width="90" Height="45" Margin="5" Fill="Gray" RadiusX="3" RadiusY="3"/>
+                    </DockPanel>
+                </WrapPanel>
+            </StackPanel>
         </Canvas>
     </Grid>
 </Window>

@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:SC"
         mc:Ignorable="d"
         Icon="Sources/Icono.ico"
-        Title="SCalculator" Height="418" Width="382"
-        ResizeMode="NoResize">
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Title="SCalculator" Height="418" Width="382">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -21,35 +22,34 @@
     </Window.Resources>
     <Grid>
         <Canvas>
-            <StackPanel Panel.ZIndex="2" Name="Smenu" Background="#FF3F3F46" Height="390" Width="205" Visibility="Hidden">
-                <WrapPanel>
-                    <Button x:Name="BtnMenu1" Height="20" Width="20" Margin="10" BorderThickness="0" Click="BtnMenu1_Click">
-                        <Button.Background>
-                            <ImageBrush ImageSource="Sources/menu.png"/>
-                        </Button.Background>
-                    </Button>
-                </WrapPanel>
-                <DockPanel Height="30">
-                    <Button Background="Transparent" Foreground="White">
-                        <Button.Content>
-                            <Image Source="Sources/Icons/cicon.png"/>
-                        </Button.Content>
-                    </Button>
-                </DockPanel>
-                <DockPanel Height="30">
-                    
-                </DockPanel>
-                <DockPanel Height="30">
-                    
-                </DockPanel>
-            </StackPanel>
-            <WrapPanel Height="40" Width="374" Background="#FF3F3F46">
+            <WrapPanel Panel.ZIndex="3" Height="40" Width="374" Background="#FF3F3F46">
                 <Button x:Name="BtnMenu" Height="20" Width="20" Margin="10" BorderThickness="0" Click="BtnMenu_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="Sources/menu.png"/>
                     </Button.Background>
                 </Button>
             </WrapPanel>
+            <StackPanel Panel.ZIndex="2" Margin="0,40,0,0" Name="Smenu" Background="#FF3F3F46" Height="390" Width="205" Visibility="Collapsed">
+                <DockPanel Height="30">
+                    <Button Background="Transparent"/>
+                </DockPanel>
+                <DockPanel Height="30">
+                    <Button Background="Transparent"/>
+                </DockPanel>
+                <DockPanel Height="30">
+                    <Button Background="Transparent"/>
+                </DockPanel>
+                <DockPanel Height="30">
+                    <Button Background="Transparent"/>
+                </DockPanel>
+                <DockPanel Height="30">
+                    <Button Content="Configuration" Background="Transparent" Foreground="White"/>
+                </DockPanel>
+                <DockPanel Height="30">
+                    <Button Content="About us" Foreground="White" Background="Transparent">
+                    </Button>
+                </DockPanel>
+            </StackPanel>
             <WrapPanel Margin="0,50,0,0">
                 <TextBox Name="TRel" Height="40" Width="346" Margin="10,0" BorderThickness="0" Background="#FFD8D8D8" KeyDown="TRel_KeyDown" TextChanged="TRel_TextChanged" />
             </WrapPanel>

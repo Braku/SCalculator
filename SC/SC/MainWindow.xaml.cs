@@ -32,12 +32,15 @@ namespace SC
 
         private void BtnMenu_Click(object sender, RoutedEventArgs e)
         {
-            Smenu.Visibility = System.Windows.Visibility.Visible;
-        }
-        private void BtnMenu1_Click(object sender, RoutedEventArgs e)
-        {
-            Smenu.Visibility = System.Windows.Visibility.Hidden;
-            this.TRel.Focus();
+            if (Smenu.Visibility == Visibility.Hidden)
+            {
+                Smenu.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                Smenu.Visibility = System.Windows.Visibility.Hidden;
+                this.TRel.Focus();
+            }
         }
 
         double a;
@@ -244,10 +247,12 @@ namespace SC
             if (TRel.Text.Length == 1)
             {
                 TRel.Text = "";
+                this.TRel.Focus();
             }
             else
             {
                 TRel.Text = TRel.Text.Substring(0, TRel.Text.Length - 1);
+                this.TRel.Focus();
             }
         }
 
@@ -256,11 +261,12 @@ namespace SC
             a = Convert.ToDouble("0");
             b = Convert.ToDouble("0");
             this.TRel.Text = "";
+            this.TRel.Focus();
         }
 
         private void BIgual_Click(object sender, EventArgs e)
         {
-            if (TRel.Text.Length > 1)
+            if (TRel.Text.Length > 0)
             {
                 string contra = TRel.Text;
                 if (contra == "0000")
@@ -290,6 +296,7 @@ namespace SC
                         break;
                 }
             }
+            this.TRel.Focus();
         }
 
         private void TRel_TextChanged(object sender, EventArgs e)
@@ -335,6 +342,7 @@ namespace SC
                 this.BMult.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
         }
+
     }
 }
       

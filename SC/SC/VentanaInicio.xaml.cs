@@ -24,11 +24,17 @@ namespace SC
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow MW = new MainWindow();
             MW.Show();
             this.Close();
+        }
+
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            Login Log = new Login();
+            Log.Show();
         }
     }
 }
