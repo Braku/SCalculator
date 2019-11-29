@@ -9,7 +9,7 @@
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="SC signup" Height="182.667" Width="250">
+        Title="SC signup" Height="145.041" Width="250">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="BorderThickness" Value="0"/>

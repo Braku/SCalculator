@@ -27,14 +27,13 @@ namespace SC
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=reg_sechma;";
+            string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            string querty = "SELECT * FROM users WHERE username = '" + username.Text + "' AND password = '" + pass.Password + "'";
             if (username.Text != "")
             {
                 if (pass.Password != "")
                 {
-
-                    MySqlConnection connection = new MySqlConnection(connectionString);
-                    string querty = "SELECT * FROM users WHERE username = '" + username.Text + "' AND password = '" + pass.Password + "'";
                     MySqlCommand cmd = new MySqlCommand(querty, connection);
                     connection.Open();
                     MySqlDataReader leer = cmd.ExecuteReader();
