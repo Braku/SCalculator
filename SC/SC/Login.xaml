@@ -26,7 +26,7 @@
         <StackPanel Margin="10">
             <DockPanel Margin="0,5" HorizontalAlignment="Center">
                 <TextBlock Text="Username:"/>
-                <TextBox Name="username" Margin="10,0" Width="100"/>
+                <TextBox Name="username" Margin="10,0" Width="100" KeyDown="Login_KeyDown"/>
             </DockPanel>
             <DockPanel Margin="0,5" HorizontalAlignment="Center">
                 <TextBlock Margin="2,0" Text="Password:"/>
