@@ -27,35 +27,104 @@ namespace SC
 
         private void singup_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=reg_sechma;";
-            if (username.Text != "")
+            string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            string query = "SELECT * FROM users WHERE username = '" +username.Text+ "';";
+            if (fname.Text != "")
             {
-                if (pass.Password != "")
+                if (lname.Text != "")
                 {
-                    string querty = "z";
-
-                    MySqlConnection connection = new MySqlConnection(connectionString);
-                    MySqlCommand cmd = new MySqlCommand(querty, connection);
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
                     connection.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Registro exitoso.");
-                    connection.Close();
+                    MySqlDataReader read = cmd.ExecuteReader();
+                    if (read.Read())
+                    {
+                        MessageBox.Show("The user already exists, use another one", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        usercau.Visibility = System.Windows.Visibility.Visible;
+                    }
+                    else
+                    {
+                        connection.Close();
+                        if (pass.Password != "" & pass.Password.Length >= 6)
+                        {
+                            usercau.Visibility = System.Windows.Visibility.Collapsed;
+                            if (cpass.Password == pass.Password)
+                            {
+                                passcau.Visibility = System.Windows.Visibility.Collapsed;
+                                connection.Open();
+                                if (read.Read())
+                                {
+                                    MessageBox.Show("The e-mail is used, use another one", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    usercau.Visibility = System.Windows.Visibility.Visible;
+                                }
+                                else if (email.Text != "")
+                                {
+                                    connection.Close();
+                                    string query1 = "INSERT INTO users(first_name, last_name, username, email, password) VALUES('" +fname.Text+ "', '" +lname.Text+ "', '" + username.Text + "', '" + email.Text + "', '" + pass.Password + "');";
+                                    MySqlCommand comm = new MySqlCommand(query1, connection);
+                                    connection.Open();
+                                    comm.ExecuteNonQuery();
+                                    MessageBox.Show("User signed up succesfully", "Seccesful", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    this.Close();
+                                    connection.Close();
+                                }
+                                else
+                                { 
+                                    MessageBox.Show("Please enter an e-mail", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    passcau.Visibility = System.Windows.Visibility.Collapsed;
+                                    mailcau.Visibility = System.Windows.Visibility.Visible;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("The password is not the same", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                cpasscau.Visibility = System.Windows.Visibility.Visible;
+                            }
+                        }
+                        else
+                        {
+                            if (pass.Password == "" || username.Text == "")
+                            {
+                                MessageBox.Show("Complete all the fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                usercau.Visibility = System.Windows.Visibility.Visible;
+                            }
+                            else if (pass.Password.Length <= 5)
+                            {
+                                MessageBox.Show("The password is too short, try again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            passcau.Visibility = System.Windows.Visibility.Visible;
+                        }
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Favor introduce tu correo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Complete all the fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Favor introduce tu nombre", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Complete all the fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void cancel_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
 
-        private void TextBlock_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        private void log_Click(object sender, RoutedEventArgs e)
         {
+            Login lin = new Login();
+            lin.Show();
+            this.Close();
+        }
 
+        private void Signup_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.sup.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
         }
     }
 }

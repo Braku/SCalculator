@@ -33,9 +33,11 @@
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Fill="#FFDDDDDD"/>
         <Button Content="Back" Width="120" HorizontalAlignment="Left" Foreground="White" Background="#FF282FB4" Click="Back_Click"/>
-        <Button Content="Folders" Width="80" Grid.Column="1"/>
+        <Button Content="Folders" Width="80" Grid.Column="1" Click="Folders_Click"/>
         <Button Content="Profile" HorizontalAlignment="Right" Grid.Column="2" Click="Profile_Click" Width="45" Margin="0,0,10,0" Height="35"/>
         <Button Content="Configuration" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,10,0" Width="45" Visibility="Collapsed"/>
+        <Button Content="Log in" FontSize="12" Height="25" Width="80" FontFamily="Tahoma" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Name="login" Click="Login_Click" Visibility="Collapsed"/>
+        <Button Content="Sign up" FontSize="12" Height="25" Width="80" Margin="0,25,0,0" FontFamily="Tahoma" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Name="signup" Click="Signup_Click" Visibility="Collapsed"/>
         <Canvas Grid.Row="2">
             <StackPanel Panel.ZIndex="2">
                 <WrapPanel Width="80" >
@@ -60,7 +62,7 @@
         <Canvas HorizontalAlignment="Center">
             <StackPanel Margin="0,10">
                 <WrapPanel>
-                    <DockPanel HorizontalAlignment="Center">
+                    <DockPanel HorizontalAlignment="Center" Margin="0,45" Visibility="Collapsed" Name="Folders">
                         <Rectangle Width="90" Height="45" Margin="5" Fill="Gray" RadiusX="3" RadiusY="3"/>
                         <Rectangle Width="90" Height="45" Margin="5" Fill="Gray" RadiusY="3" RadiusX="3"/>
                         <Rectangle Width="90" Height="45" Margin="5" Fill="Gray" RadiusX="3" RadiusY="3"/>

@@ -33,8 +33,60 @@ namespace SC
 
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
-            Login Log = new Login();
-            Log.Show();
+            if (signup.Visibility == System.Windows.Visibility.Collapsed & login.Visibility == System.Windows.Visibility.Collapsed)
+            {
+                signup.Visibility = System.Windows.Visibility.Visible;
+                login.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                signup.Visibility = System.Windows.Visibility.Collapsed;
+                login.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void Folders_Click(object sender, RoutedEventArgs e)
+        {
+            if (Folders.Visibility == System.Windows.Visibility.Collapsed)
+            {
+                Folders.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                Folders.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            Login lin = new Login();
+            lin.Show();
+            if (signup.Visibility == System.Windows.Visibility.Collapsed & login.Visibility == System.Windows.Visibility.Collapsed)
+            {
+                signup.Visibility = System.Windows.Visibility.Visible;
+                login.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                signup.Visibility = System.Windows.Visibility.Collapsed;
+                login.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void Signup_Click(object sender, RoutedEventArgs e)
+        {
+            signup sup = new signup();
+            sup.Show();
+            if (signup.Visibility == System.Windows.Visibility.Collapsed & login.Visibility == System.Windows.Visibility.Collapsed)
+            {
+                signup.Visibility = System.Windows.Visibility.Visible;
+                login.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                signup.Visibility = System.Windows.Visibility.Collapsed;
+                login.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
     }
 }

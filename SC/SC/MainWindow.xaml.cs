@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Resources;
 using System.Windows.Controls.Primitives;
+using MySql.Data.MySqlClient;
 
 namespace SC
 {
@@ -268,8 +269,13 @@ namespace SC
         {
             if (TRel.Text.Length > 0)
             {
-                string contra = TRel.Text;
-                if (contra == "0000")
+                string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
+                MySqlConnection connection = new MySqlConnection(connectionString);
+                string querty = "SELECT * FROM pin WHERE id = '" + TRel.Text + "';";
+                MySqlCommand cmd = new MySqlCommand(querty, connection);
+                connection.Open();
+                MySqlDataReader read = cmd.ExecuteReader();
+                if (read.Read())
                 {
                     VentanaInicio VI = new VentanaInicio();
                     VI.Show();
@@ -280,19 +286,19 @@ namespace SC
                 switch (c)
                 {
                     case "+":
-                        this.TRel.Text = Convert.ToString((b) + (a));
+                        this.TRel.Text = Convert.ToString(b + a);
                         break;
 
                     case "-":
-                        this.TRel.Text = Convert.ToString((b) - (a));
+                        this.TRel.Text = Convert.ToString(b - a);
                         break;
 
                     case "*":
-                        this.TRel.Text = Convert.ToString((b) * (a));
+                        this.TRel.Text = Convert.ToString(b * a);
                         break;
 
                     case "/":
-                        this.TRel.Text = Convert.ToString((b) / (a));
+                        this.TRel.Text = Convert.ToString(b / a);
                         break;
                 }
             }

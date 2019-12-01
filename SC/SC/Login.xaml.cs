@@ -23,27 +23,28 @@ namespace SC
         public Login()
         {
             InitializeComponent();
+            this.username.Focus();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
             MySqlConnection connection = new MySqlConnection(connectionString);
-            string querty = "SELECT * FROM users WHERE username = '" + username.Text + "' AND password = '" + pass.Password + "'";
+            string query = "SELECT * FROM users WHERE username = '" + username.Text + "' AND password = '" + pass.Password + "'";
             if (username.Text != "")
             {
                 if (pass.Password != "")
                 {
-                    MySqlCommand cmd = new MySqlCommand(querty, connection);
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
                     connection.Open();
-                    MySqlDataReader leer = cmd.ExecuteReader();
-                    if (leer.Read())
+                    MySqlDataReader read = cmd.ExecuteReader();
+                    if (read.Read())
                     {
                         MessageBox.Show("Welcome.");
                     }
                     else
                     {
-                        MessageBox.Show("Access denied", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Access denied, the username or password might be wrong", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     connection.Close();
                 }
@@ -58,9 +59,19 @@ namespace SC
             }
         }
 
-        private void TextBlock_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        private void signup_Click(object sender, RoutedEventArgs e)
         {
+            signup sup = new signup();
+            sup.Show();
+            this.Close();
+        }
 
+        private void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.Lin.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
         }
     }
 }
