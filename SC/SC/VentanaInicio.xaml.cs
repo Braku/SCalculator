@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace SC
 {
@@ -22,6 +24,7 @@ namespace SC
         public VentanaInicio()
         {
             InitializeComponent();
+            full_name();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -33,6 +36,7 @@ namespace SC
 
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
+            full_name();
             if (signup.Visibility == System.Windows.Visibility.Collapsed & login.Visibility == System.Windows.Visibility.Collapsed)
             {
                 signup.Visibility = System.Windows.Visibility.Visible;
@@ -87,6 +91,23 @@ namespace SC
                 signup.Visibility = System.Windows.Visibility.Collapsed;
                 login.Visibility = System.Windows.Visibility.Collapsed;
             }
+        }
+
+        private void full_name()
+        {
+            Login lin = new Login();
+            string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            string query = "SELECT * FROM users;";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            connection.Open();
+            MySqlDataReader read = cmd.ExecuteReader();
+            if (read.Read())
+            {
+                first_name.Text = read["first_name"].ToString();
+                last_name.Text = read["last_name"].ToString();
+            }
+            connection.Close();
         }
     }
 }

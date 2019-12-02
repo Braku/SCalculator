@@ -7,19 +7,19 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="83*" />
-            <RowDefinition Height="998*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120"/>
-            <ColumnDefinition Width="120"/>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Button x:Name="button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#33DCFF00" Content="Button" />
-        <Button x:Name="button_Copy" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#33FF0000" Content="Button" />
-        <Button x:Name="button_Copy1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#3300FF0C" Content="Button" />
-        <Button x:Name="button_Copy2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF947AFD" Content="Button" />
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First name" />
+                <DataGridTextColumn Header="Last name" />
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <DataGridCell Content="{Binding Path=first_name}"/>
+                        <DataGridCell Content="{Binding Path=last_name}"/>
+                    </DockPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
     </Grid>
 </Window>

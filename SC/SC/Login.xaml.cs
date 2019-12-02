@@ -41,6 +41,7 @@ namespace SC
                     if (read.Read())
                     {
                         MessageBox.Show("Welcome.");
+                        this.Close();
                     }
                     else
                     {

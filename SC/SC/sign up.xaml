@@ -34,7 +34,7 @@
             </DockPanel>
             <DockPanel Margin="0,5,0,0" HorizontalAlignment="Center">
                 <TextBlock Text="Username:"/>
-                <TextBox Name="username" Margin="10,0" Width="150"/>
+                <TextBox MaxLength="16" Name="username" Margin="10,0" Width="150"/>
                 <Image Source="Sources/Icons/caution.png" Name="usercau" Width="18" Visibility="Collapsed"/>
             </DockPanel>
             <Label Content="Without spaces" FontSize="10" Foreground="#FF999999" Margin="135,0,0,0"/>

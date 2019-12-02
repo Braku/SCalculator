@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace SC
 {
@@ -22,6 +24,14 @@ namespace SC
         public Window1()
         {
             InitializeComponent();
+            string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM users", connection);
+            connection.Open();
+            DataTable dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            connection.Close();
+            dataGrid.DataContext = dt;
         }
     }
 }

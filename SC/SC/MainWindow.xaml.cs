@@ -290,7 +290,7 @@ namespace SC
                         break;
 
                     case "-":
-                        this.TRel.Text = Convert.ToString(b - a);
+                        this.TRel.Text = Convert.ToString(a - b);
                         break;
 
                     case "*":

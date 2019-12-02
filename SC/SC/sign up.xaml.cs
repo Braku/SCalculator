@@ -29,7 +29,7 @@ namespace SC
         {
             string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
             MySqlConnection connection = new MySqlConnection(connectionString);
-            string query = "SELECT * FROM users WHERE username = '" +username.Text+ "';";
+            string query = "SELECT * FROM usuarios WHERE username = '" +username.Text+ "';";
             if (fname.Text != "")
             {
                 if (lname.Text != "")
@@ -51,25 +51,32 @@ namespace SC
                             if (cpass.Password == pass.Password)
                             {
                                 passcau.Visibility = System.Windows.Visibility.Collapsed;
-                                connection.Open();
-                                if (read.Read())
+                                if (email.Text != "")
                                 {
-                                    MessageBox.Show("The e-mail is used, use another one", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                                    usercau.Visibility = System.Windows.Visibility.Visible;
-                                }
-                                else if (email.Text != "")
-                                {
-                                    connection.Close();
-                                    string query1 = "INSERT INTO users(first_name, last_name, username, email, password) VALUES('" +fname.Text+ "', '" +lname.Text+ "', '" + username.Text + "', '" + email.Text + "', '" + pass.Password + "');";
-                                    MySqlCommand comm = new MySqlCommand(query1, connection);
+                                    string query1 = "SELECT * FROM usuarios WHERE email = '" + email.Text + "';";
+                                    MySqlCommand cmd1 = new MySqlCommand(query1, connection);
                                     connection.Open();
-                                    comm.ExecuteNonQuery();
-                                    MessageBox.Show("User signed up succesfully", "Seccesful", MessageBoxButton.OK, MessageBoxImage.Information);
-                                    this.Close();
+                                    MySqlDataReader read1 = cmd1.ExecuteReader();
+                                    if (read1.Read())
+                                    {
+                                        MessageBox.Show("The e-mail is used, use another one", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        mailcau.Visibility = System.Windows.Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        connection.Close();
+                                        string query2 = "INSERT INTO usuarios(first_name, last_name, username, email, password) VALUES('" + fname.Text + "', '" + lname.Text + "', '" + username.Text + "', '" + email.Text + "', '" + pass.Password + "');";
+                                        MySqlCommand comm = new MySqlCommand(query2, connection);
+                                        connection.Open();
+                                        comm.ExecuteNonQuery();
+                                        MessageBox.Show("User signed up succesfully", "Seccesful", MessageBoxButton.OK, MessageBoxImage.Information);
+                                        this.Close();
+                                        connection.Close();
+                                    }
                                     connection.Close();
                                 }
                                 else
-                                { 
+                                {
                                     MessageBox.Show("Please enter an e-mail", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                     passcau.Visibility = System.Windows.Visibility.Collapsed;
                                     mailcau.Visibility = System.Windows.Visibility.Visible;
@@ -77,7 +84,7 @@ namespace SC
                             }
                             else
                             {
-                                MessageBox.Show("The password is not the same", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show("The passwords do not match", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                 cpasscau.Visibility = System.Windows.Visibility.Visible;
                             }
                         }
