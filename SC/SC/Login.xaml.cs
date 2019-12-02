@@ -30,7 +30,7 @@ namespace SC
         {
             string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
             MySqlConnection connection = new MySqlConnection(connectionString);
-            string query = "SELECT * FROM users WHERE username = '" + username.Text + "' AND password = '" + pass.Password + "'";
+            string query = "SELECT first_name, last_name, username FROM users WHERE username = '" + username.Text + "' AND password = '" + pass.Password + "'";
             if (username.Text != "")
             {
                 if (pass.Password != "")
@@ -40,7 +40,12 @@ namespace SC
                     MySqlDataReader read = cmd.ExecuteReader();
                     if (read.Read())
                     {
+                        string a = read["first_name"].ToString();
+                        string b = read["last_name"].ToString();
+                        string c = read["username"].ToString();
                         MessageBox.Show("Welcome.");
+                        VentanaInicio vi = new VentanaInicio(a, b, c) ;
+                        vi.Show();
                         this.Close();
                     }
                     else
@@ -73,6 +78,13 @@ namespace SC
             {
                 this.Lin.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
+        }
+
+        private void Logincan_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
         }
     }
 }

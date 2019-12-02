@@ -23,25 +23,13 @@
     <Grid>
         <Canvas>
             <WrapPanel Panel.ZIndex="3" Height="40" Width="374" Background="#FF3F3F46">
-                <Button x:Name="BtnMenu" Height="20" Width="20" Margin="10" BorderThickness="0" Click="BtnMenu_Click">
+                <Button x:Name="BtnMenu" Height="20" Width="20" Margin="10" BorderThickness="0" Click="BtnMenu_Click" Visibility="Collapsed">
                     <Button.Background>
                         <ImageBrush ImageSource="Sources/menu.png"/>
                     </Button.Background>
                 </Button>
             </WrapPanel>
             <StackPanel Panel.ZIndex="2" Margin="0,40,0,0" Name="Smenu" Background="#FF3F3F46" Height="390" Width="205" Visibility="Collapsed">
-                <DockPanel Height="30">
-                    <Button Background="Transparent"/>
-                </DockPanel>
-                <DockPanel Height="30">
-                    <Button Background="Transparent"/>
-                </DockPanel>
-                <DockPanel Height="30">
-                    <Button Background="Transparent"/>
-                </DockPanel>
-                <DockPanel Height="30">
-                    <Button Background="Transparent"/>
-                </DockPanel>
                 <DockPanel Height="30">
                     <Button Content="Configuration" Background="Transparent" Foreground="White"/>
                 </DockPanel>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Icon="Sources/Icono.ico"
         WindowState="Maximized"
-        Title="SC File manager">
+        Title="SC Gallery" Height="871" Width="1304">
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -32,28 +32,35 @@
             <ColumnDefinition Width="120*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Fill="#FFDDDDDD"/>
-        <Button Content="Back" Width="120" HorizontalAlignment="Left" Foreground="White" Background="#FF282FB4" Click="Back_Click"/>
-        <Button Content="Folders" HorizontalAlignment="Center" Width="120" Grid.Column="1" Click="Folders_Click" Margin="88,0,89,0"/>
-        <Button Content="Profile" HorizontalAlignment="Right" Grid.Column="2" Click="Profile_Click" Width="45" Margin="0,0,10,0"/>
-        <Button Content="Configuration" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,10,0" Width="45" Visibility="Collapsed"/>
-        <Button Content="Log in" FontSize="12" Height="25" Width="80" FontFamily="Tahoma" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Name="login" Click="Login_Click" Visibility="Collapsed"/>
-        <Button Content="Sign up" FontSize="12" Height="25" Width="80" Margin="0,25,0,0" FontFamily="Tahoma" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Name="signup" Click="Signup_Click" Visibility="Collapsed"/>
+        <Button Content="Sign out" Width="120" HorizontalAlignment="Left" Foreground="White" Background="#FF282FB4" Click="Back_Click"/>
+        <Button Content="Folders" HorizontalAlignment="Center" Width="120" Grid.Column="1" Click="Folders_Click" Margin="88,0,89,0" Visibility="Collapsed"/>
+        <Button Content="{Binding}" HorizontalAlignment="Right" Name="profile" Grid.Column="2" Click="Profile_Click" Margin="0,0,40,0"/>
+        <StackPanel Name="sout" Height="150" Width="150" Background="#FFDDDDDD" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+            <Button Height="50" Width="50" Margin="0,10" Background="Transparent" Name="photoch" Click="photoch_Click"/>
+            <Image Height="50" Width="50" Margin="0,10" Source="{Binding}" Visibility="Collapsed" Stretch="Fill" Name="photo"/>
+            <WrapPanel HorizontalAlignment="Center">
+                <TextBlock Name="tbfname" Text="{Binding}" Margin="5,5"/>
+                <TextBlock Name="tblname" Text="{Binding}" Margin="5,5"/>
+            </WrapPanel>
+            <TextBox Name="ChPin" FontSize="16" Width="80" MaxLength="4" HorizontalAlignment="Center" Visibility="Hidden"/>
+            <Button Content="Change access pin" BorderThickness="0,0,0,1" HorizontalAlignment="Center" Margin="0,10" Grid.Column="2" Click="ChPin_Click"/>
+        </StackPanel>
         <Canvas Grid.Row="2">
             <StackPanel Panel.ZIndex="2">
                 <WrapPanel Width="80" >
-                    <Button Height="50" Width="50">
+                    <Button Height="50" Width="50" Visibility="Hidden">
                         <Button.Background>
                             <ImageBrush ImageSource="Sources/Icons/nfolder.png"/>
                         </Button.Background>
                     </Button>
-                    <Button Height="50" Width="50">
+                    <Button Name="btnLoad" Height="50" Width="50" Click="btnLoad_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="Sources/Icons/nfile.png"/>
                         </Button.Background>
                     </Button>
-                    <Button Height="50" Width="50">
+                    <Button Height="50" Width="50" Visibility="Hidden">
                         <Button.Background>
-                            <ImageBrush ImageSource="Sources/Icons/edit.png"/>
+                            <ImageBrush/>
                         </Button.Background>
                     </Button>
                     <Button Height="50" Width="50" Visibility="Collapsed">
@@ -64,7 +71,7 @@
                 </WrapPanel>
             </StackPanel>
         </Canvas>
-        <Grid HorizontalAlignment="Center" Grid.Column="1" Name="Folders" Grid.Row="1" Width="440" Grid.RowSpan="3" Visibility="Collapsed">
+        <Grid HorizontalAlignment="Center" Name="Folders" Grid.Row="1" Width="876" Grid.RowSpan="3" Visibility="Visible" Margin="10,0,0,0" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="65*"/>
@@ -73,7 +80,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="540*"/>
             </Grid.ColumnDefinitions>
-            <Canvas Grid.Row="1">
+            <Canvas Grid.Row="1" Visibility="Collapsed">
                 <StackPanel>
                     <WrapPanel>
                         <Button Height="40" Width="90" Margin="10,0"/>
@@ -86,58 +93,32 @@
             <Canvas Grid.Row="2">
                 <StackPanel>
                     <WrapPanel>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0" Name="imgPhoto" Stretch="Fill" Grid.Column="1"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
                     </WrapPanel>
                     <WrapPanel Margin="0,10">
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
                     </WrapPanel>
                     <WrapPanel>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
                     </WrapPanel>
                     <WrapPanel Margin="0,10">
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                        <Button Height="90" Width="90" Margin="10,0"/>
-                    </WrapPanel>
-                </StackPanel>
-            </Canvas>
-        </Grid>
-        <Grid HorizontalAlignment="Center" Grid.Column="1" Name="Profile" Grid.Row="1" Width="440" Grid.RowSpan="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="8*"/>
-                <RowDefinition Height="116*"/>
-                <RowDefinition Height="345*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="17*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="17*"/>
-            </Grid.ColumnDefinitions>
-            <Canvas Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1">
-                <StackPanel>
-                    <WrapPanel>
-                        <Image Source="Sources/Icono.ico" Height="100" Width="100" />
-                    </WrapPanel>
-                </StackPanel>
-            </Canvas>
-            <Canvas Grid.Row="2" Grid.ColumnSpan="3">
-                <StackPanel Margin="40,10">
-                    <TextBlock Text="Full name:" FontSize="16" Foreground="#FF959595"/>
-                </StackPanel>
-                <StackPanel Margin="60,30">
-                    <WrapPanel>
-                        <TextBlock Margin="5,0" Name="first_name" Text="{Binding}" FontSize="16" Foreground="#FF959595"/>
-                        <TextBlock Margin="5,0" Name="last_name" Text="{Binding}" FontSize="16" Foreground="#FF959595"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
+                        <Image Source="{Binding}" Height="150" Width="150" Margin="10,0"/>
                     </WrapPanel>
                 </StackPanel>
             </Canvas>

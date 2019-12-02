@@ -271,14 +271,14 @@ namespace SC
             {
                 string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
                 MySqlConnection connection = new MySqlConnection(connectionString);
-                string querty = "SELECT * FROM pin WHERE id = '" + TRel.Text + "';";
+                string querty = "SELECT * FROM pin WHERE pinid = '" + TRel.Text + "';";
                 MySqlCommand cmd = new MySqlCommand(querty, connection);
                 connection.Open();
                 MySqlDataReader read = cmd.ExecuteReader();
                 if (read.Read())
                 {
-                    VentanaInicio VI = new VentanaInicio();
-                    VI.Show();
+                    Login lin = new Login();
+                    lin.Show();
                     this.Close();
                 }
 

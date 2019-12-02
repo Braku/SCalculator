@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
+using Microsoft.Win32;
 using System.Data;
 
 namespace SC
@@ -21,31 +22,50 @@ namespace SC
     /// </summary>
     public partial class VentanaInicio : Window
     {
-        public VentanaInicio()
+        public VentanaInicio(string fname, string lname, string user)
         {
             InitializeComponent();
-            full_name();
+            tbfname.Text = fname;
+            tblname.Text = lname;
+            profile.Content = user;
+
+            string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            string query = "SELECT photo FROM users WHERE username = '" + profile.Content + "'";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            connection.Open();
+            MySqlDataReader read = cmd.ExecuteReader();
+            if (read.Read())
+            {
+                photo.Visibility = System.Windows.Visibility.Collapsed;
+                photoch.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                photoch.Visibility = System.Windows.Visibility.Collapsed;
+                photo.Visibility = System.Windows.Visibility.Visible;
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow MW = new MainWindow();
-            MW.Show();
-            this.Close();
+            if (MessageBox.Show("Are you sure that you want to sign out", "Caution", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                MW.Show();
+                this.Close();
+            }
         }
 
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
-            full_name();
-            if (signup.Visibility == System.Windows.Visibility.Collapsed & login.Visibility == System.Windows.Visibility.Collapsed)
+            if (sout.Visibility == System.Windows.Visibility.Collapsed)
             {
-                signup.Visibility = System.Windows.Visibility.Visible;
-                login.Visibility = System.Windows.Visibility.Visible;
+                sout.Visibility = System.Windows.Visibility.Visible;
             }
             else
             {
-                signup.Visibility = System.Windows.Visibility.Collapsed;
-                login.Visibility = System.Windows.Visibility.Collapsed;
+                sout.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
@@ -61,53 +81,62 @@ namespace SC
             }
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
-            Login lin = new Login();
-            lin.Show();
-            if (signup.Visibility == System.Windows.Visibility.Collapsed & login.Visibility == System.Windows.Visibility.Collapsed)
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" + "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" + "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
             {
-                signup.Visibility = System.Windows.Visibility.Visible;
-                login.Visibility = System.Windows.Visibility.Visible;
-            }
-            else
-            {
-                signup.Visibility = System.Windows.Visibility.Collapsed;
-                login.Visibility = System.Windows.Visibility.Collapsed;
+                imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
             }
         }
 
-        private void Signup_Click(object sender, RoutedEventArgs e)
+        private void ChPin_Click(object sender, RoutedEventArgs e)
         {
-            signup sup = new signup();
-            sup.Show();
-            if (signup.Visibility == System.Windows.Visibility.Collapsed & login.Visibility == System.Windows.Visibility.Collapsed)
-            {
-                signup.Visibility = System.Windows.Visibility.Visible;
-                login.Visibility = System.Windows.Visibility.Visible;
-            }
-            else
-            {
-                signup.Visibility = System.Windows.Visibility.Collapsed;
-                login.Visibility = System.Windows.Visibility.Collapsed;
-            }
-        }
-
-        private void full_name()
-        {
-            Login lin = new Login();
             string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
             MySqlConnection connection = new MySqlConnection(connectionString);
-            string query = "SELECT * FROM users;";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
-            MySqlDataReader read = cmd.ExecuteReader();
-            if (read.Read())
+            string query = "UPDATE pin SET pinid = '" + ChPin.Text + "' WHERE id = 1;";
+            if (ChPin.Visibility == System.Windows.Visibility.Hidden)
             {
-                first_name.Text = read["first_name"].ToString();
-                last_name.Text = read["last_name"].ToString();
+                ChPin.Visibility = System.Windows.Visibility.Visible;
             }
+            else if (ChPin.Visibility == System.Windows.Visibility.Visible)
+            {
+                if (MessageBox.Show("Are you sure you want to chanche the pin?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                    ChPin.Visibility = System.Windows.Visibility.Hidden;
+                }
+                else
+                {
+                    ChPin.Visibility = System.Windows.Visibility.Hidden;
+                }
+            }
+
+        }
+
+        private void photoch_Click(object sender, RoutedEventArgs e)
+        {
+            string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            string query = "UPDATE users SET photo = LOAD_FILE('" + photo.Source + "') WHERE username = '" + profile.Content + "';";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" + "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" + "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+                photo.Source = new BitmapImage(new Uri(op.FileName));
+            }
+            connection.Open();
+            cmd.ExecuteNonQuery();
             connection.Close();
+            photoch.Visibility = System.Windows.Visibility.Collapsed;
+            photo.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }

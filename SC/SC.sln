@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SC", "SC\SC.csproj", "{C6F3
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SCalculator", "SCalculator\SCalculator.vdproj", "{2419B5E7-DF42-49F3-919D-C2EE16792522}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SCalc", "SCalc\SCalc.vdproj", "{F4FE16AA-A243-4483-B0FE-A556807894B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,8 @@ Global
 		{C6F362A9-13A0-49B0-A6F6-6F0AD77FB38D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2419B5E7-DF42-49F3-919D-C2EE16792522}.Debug|Any CPU.ActiveCfg = Debug
 		{2419B5E7-DF42-49F3-919D-C2EE16792522}.Release|Any CPU.ActiveCfg = Release
+		{F4FE16AA-A243-4483-B0FE-A556807894B3}.Debug|Any CPU.ActiveCfg = Debug
+		{F4FE16AA-A243-4483-B0FE-A556807894B3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

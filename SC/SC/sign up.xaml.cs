@@ -29,7 +29,7 @@ namespace SC
         {
             string connectionString = "datasource=127.0.0.1;username=root;password=Brambila1402;database=usuarios;";
             MySqlConnection connection = new MySqlConnection(connectionString);
-            string query = "SELECT * FROM usuarios WHERE username = '" +username.Text+ "';";
+            string query = "SELECT * FROM users WHERE username = '" +username.Text+ "';";
             if (fname.Text != "")
             {
                 if (lname.Text != "")
@@ -53,7 +53,7 @@ namespace SC
                                 passcau.Visibility = System.Windows.Visibility.Collapsed;
                                 if (email.Text != "")
                                 {
-                                    string query1 = "SELECT * FROM usuarios WHERE email = '" + email.Text + "';";
+                                    string query1 = "SELECT * FROM users WHERE email = '" + email.Text + "';";
                                     MySqlCommand cmd1 = new MySqlCommand(query1, connection);
                                     connection.Open();
                                     MySqlDataReader read1 = cmd1.ExecuteReader();
@@ -65,11 +65,13 @@ namespace SC
                                     else
                                     {
                                         connection.Close();
-                                        string query2 = "INSERT INTO usuarios(first_name, last_name, username, email, password) VALUES('" + fname.Text + "', '" + lname.Text + "', '" + username.Text + "', '" + email.Text + "', '" + pass.Password + "');";
+                                        string query2 = "INSERT INTO users(first_name, last_name, username, email, password) VALUES('" + fname.Text + "', '" + lname.Text + "', '" + username.Text + "', '" + email.Text + "', '" + pass.Password + "');";
                                         MySqlCommand comm = new MySqlCommand(query2, connection);
                                         connection.Open();
                                         comm.ExecuteNonQuery();
                                         MessageBox.Show("User signed up succesfully", "Seccesful", MessageBoxButton.OK, MessageBoxImage.Information);
+                                        Login loin = new Login();
+                                        loin.Show();
                                         this.Close();
                                         connection.Close();
                                     }
